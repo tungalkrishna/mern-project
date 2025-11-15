@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// Base URL of your backend
+// Base URL of your live backend on Render
 const API = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://mern-project-1-091l.onrender.com", // <-- update this
 });
 
 // Register user
@@ -11,5 +11,5 @@ export const registerUser = (data) => API.post("/api/auth/register", data);
 // Login user
 export const loginUser = (data) => API.post("/api/auth/login", data);
 
-// You can add more APIs later, ex:
+// Example for future APIs
 // export const getProfile = () => API.get("/api/user/profile");
