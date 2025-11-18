@@ -38,12 +38,12 @@ export const loginUser = async (req, res) => {
 
     // Find user
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ message: "Invalid email or password" });
+    if (!user) return res.status(400).json({ message: "Invalid email" });
 
     // Compare password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch)
-      return res.status(400).json({ message: "Invalid email or password" });
+      return res.status(400).json({ message: "password" });
 
     // Create JWT token
     const token = jwt.sign(
@@ -62,6 +62,22 @@ export const loginUser = async (req, res) => {
       },
     });
 
+  } catch (err) {
+    res.status(500).json({ message: "Server Error", error: err.message });
+  }
+};
+
+
+// ---------------- GET USER PROFILE (PROTECTED) ----------------
+export const getUserProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ user });
   } catch (err) {
     res.status(500).json({ message: "Server Error", error: err.message });
   }

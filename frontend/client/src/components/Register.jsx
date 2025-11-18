@@ -23,7 +23,7 @@ export default function Register() {
     setSuccessMsg("");
 
     try {
-      const res = axios.post("https://mern-project-1-091l.onrender.com/api/register", form);
+      const res = await axios.post("http://localhost:5000/api/auth/register", form);
 
       setSuccessMsg("Registration successful! Redirecting...");
       setTimeout(() => navigate("/login"), 1500);

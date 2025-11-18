@@ -1,15 +1,21 @@
 import axios from "axios";
 
-// Base URL of your live backend on Render
 const API = axios.create({
-  baseURL: "https://mern-project-1-091l.onrender.com", // <-- update this
+  baseURL: "http://localhost:5000",
 });
 
-// Register user
-export const registerUser = (data) => API.post("/api/auth/register", data);
+// Auto-add token
+API.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 
-// Login user
-export const loginUser = (data) => API.post("/api/auth/login", data);
 
-// Example for future APIs
-// export const getProfile = () => API.get("/api/user/profile");
+
+// Protected route
+export const getProfile = () => API.get("/api/auth/profile");
+
+export default API;

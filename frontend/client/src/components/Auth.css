@@ -62,3 +62,19 @@
   color: #007bff;
   text-decoration: none;
 }
+
+.error {
+  background: #ffcccc;
+  color: #b30000;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.success {
+  background: #ccffcc;
+  color: #006600;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
