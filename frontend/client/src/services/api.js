@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://mern-project-2-s9en.onrender.com",
 });
 
 // Auto-add token
